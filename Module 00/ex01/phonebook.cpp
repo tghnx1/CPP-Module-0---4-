@@ -3,7 +3,7 @@
 //g++ -Wall -Wextra -Werror -std=c++98 megaphone.cpp
 void  PhoneBook::add()
 {
-  contact contact;
+  Contact contact(contacts.size());
 
   cout << "Write the first name:" << std::endl;
   cin >> contact.first_name;
@@ -20,19 +20,73 @@ void  PhoneBook::add()
   cout << "Write the command (ADD/SEARCH/EXIT):" << endl;
 }
 
+Contact::Contact(int    contacts_size)
+    {
+        this->index = contacts_size;
+    };
+
+void PhoneBook::truncate(string cur_str)
+{
+  if (cur_str.size() < 11)
+  {
+    cout << setw(10) << cur_str;
+    return;
+  }
+  string new_str = cur_str;
+  new_str = new_str.substr(0, 9) + '.';
+  cout << setw(10) << new_str;
+}
+
 void PhoneBook::search()
 {
-  for (list<contact>::iterator it = contacts.begin(); it != contacts.end(); it++)
+  int i = 0;
+
+    cout << right;
+    cout << setw(10) << "Index:"     << "|"
+         << setw(10) << "First name" << "|"
+         << setw(10) << "Lastname"   << "|"
+         << setw(10) << "Nickname"
+         << std::endl;
+    cout << "-------------------------------------------" << endl;
+  for (list<Contact>::iterator it = contacts.begin(); it != contacts.end(); it++, i++)
   {
-    cout << "________________________________\n";
-    cout << it->first_name << "\n" << it->last_name << "\n"
-         << it->nick_name << "\n" << it->phone << "\n" << it->darkest_secret << endl;
+    cout << setw(10) << i << "|";
+    truncate(it->first_name);
+    cout << "|";
+    truncate(it->last_name);
+    cout << "|";
+    truncate(it->nick_name);
+    cout << endl;
   }
+  int user_index;
+  user_index = ask_index();
+  contact_display(user_index);
+}
+
+void PhoneBook::contact_display(int index)
+{
+    cout << "lol" << endl;
+}
+
+int PhoneBook::ask_index()
+{
+  int user_index = -1;
+  while (user_index == -1)
+  {
+      cout << "Write the Index:" << std::endl;
+      cin >> user_index;
+      while (user_index < 0 || user_index >= contacts.size())
+      {
+          cout << "Write the correct Index!" << std::endl;
+          cin >> user_index;
+      }
+  }
+  return user_index;
 }
 
 void  PhoneBook::ft_exit()
 {
-  cout << "Exiting..." << endl; //TODO: free the stuff
+  cout << "Exiting..." << endl;
   exit(0);
 }
 

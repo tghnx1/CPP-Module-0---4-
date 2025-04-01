@@ -2,23 +2,29 @@
 #include <string>
 #include <iostream>
 #include <list>
+#include <iomanip>
 
 using namespace std;
 
-class contact
+class Contact
 {
     public:
+        Contact(int   contacts_size);
         string    first_name;
         string    last_name;
         string    nick_name;
-        long      phone;
+        string    phone;
         string    darkest_secret;
+        int       index;
 };
 
 class PhoneBook
 {
     private:
-        list<contact>   contacts;
+        list<Contact>   contacts;
+        void            truncate(string);
+        int             ask_index();
+        void            contact_display(int index);
     public:
         void            add();
         void            search();
