@@ -1,11 +1,7 @@
 #pragma once
 #include <iostream>
-#include <list>
 #include <iomanip>
 #include <array>
-#include <string>
-#include <stdlib.h>
-#include <stdio.h>
 
 using namespace std;
 
@@ -19,15 +15,7 @@ class Contact
         char      darkest_secret[100];
         int       index;
         int       validate_phone(char *);
-    Contact()
-    {
-        first_name[0] = '\0';
-        last_name[0] = '\0';
-        nick_name[0] = '\0';
-        phone[0] = '\0';
-        darkest_secret[0] = '\0';
-        index = -1;
-    }
+    Contact();
 };
 
 class PhoneBook
@@ -40,12 +28,7 @@ class PhoneBook
         int                        size;
         int                        oldest_index;
     public:
-        PhoneBook()
-        {
-          size = 0;
-          oldest_index = 0;
-        }
-        void            add();
-        void            search();
-        void            ft_exit();
+        PhoneBook();
+        void                        add();
+        void                        search();
 };

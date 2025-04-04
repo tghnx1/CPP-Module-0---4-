@@ -122,10 +122,22 @@ int PhoneBook::ask_index()
   return user_index;
 }
 
-void  PhoneBook::ft_exit()
+PhoneBook::PhoneBook()
 {
-  exit(0);
+    size = 0;
+    oldest_index = 0;
 }
+
+Contact::Contact()
+  {
+    first_name[0] = '\0';
+    last_name[0] = '\0';
+    nick_name[0] = '\0';
+    phone[0] = '\0';
+    darkest_secret[0] = '\0';
+    index = -1;
+  }
+
 
 int main ()
 {
@@ -138,7 +150,7 @@ int main ()
       cout << "Write the command (ADD/SEARCH/EXIT):" << endl;
     cin >> command;
     if (!strcmp(command, "EXIT"))
-      book.ft_exit();
+      exit(0);
     if (!strcmp(command, "SEARCH"))
         book.search();
     if (!strcmp(command, "ADD"))
