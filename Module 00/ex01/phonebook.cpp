@@ -4,7 +4,7 @@
 
 int Contact::validate_phone(char *phone)
 {
-  if (phone[0] != '+' && !(phone[0] > '0' && phone[0] < '9'))
+  if (phone[0] != '+' && !(phone[0] >= '0' && phone[0] <= '9'))
     return 0;
   for (int i = 1; phone[i] != '\0'; i++)
   {
