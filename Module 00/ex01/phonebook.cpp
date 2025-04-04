@@ -1,9 +1,22 @@
 #include "phonebook.hpp"
 
 //g++ -Wall -Wextra -Werror -std=c++98 megaphone.cpp
+
+int validate_phone(char *phone)
+{
+  if (phone[0] != '+' && !(phone[0] > '0' && phone[0] < '9'))
+    return 0;
+  for (int i = 1; phone[i] != '\0'; i++)
+  {
+    if ((phone[i] < '0' || phone[i] > '9'))
+      return 0;
+  }
+  return 1;
+}
+
 void  PhoneBook::add()
 {
-  Contact contact(contacts.size());
+  Contact contact;
 
   cout << "Write the first name:" << std::endl;
   cin >> contact.first_name;
@@ -13,17 +26,33 @@ void  PhoneBook::add()
   cin >> contact.nick_name;
   cout << "Write the number:" << std::endl;
   cin >> contact.phone;
+  while (!validate_phone(contact.phone))
+  {
+          cout << "Only '+' and numbers allowed!!!!!" << std::endl;
+          cin.clear();               // clear the error flags
+		  cin.ignore(10000, '\n'); // skip the buffer
+          cin >> contact.phone;
+  }
+
   cout << "Write the darkest secret:" << std::endl;
-  cin >> contact.darkest_secret;
-  contacts.push_back(contact);
+  cin.ignore(10000, '\n'); // skip the buffer
+  cin.getline(contact.darkest_secret, 100);
+  if (size == 8)
+  {
+      contacts[oldest_index] = contact;
+      if (oldest_index == 7)
+        oldest_index = 0;
+      else
+        oldest_index ++;
+  }
+  else
+  {
+      contacts[size] = contact;
+      size++;
+  }
   cout << "Contact added!" << std::endl;
   cout << "Write the command (ADD/SEARCH/EXIT):" << endl;
 }
-
-Contact::Contact(int    contacts_size)
-    {
-        this->index = contacts_size;
-    };
 
 void PhoneBook::truncate(string cur_str)
 {
@@ -39,8 +68,6 @@ void PhoneBook::truncate(string cur_str)
 
 void PhoneBook::search()
 {
-  int i = 0;
-
     cout << right;
     cout << setw(10) << "Index:"     << "|"
          << setw(10) << "First name" << "|"
@@ -48,24 +75,31 @@ void PhoneBook::search()
          << setw(10) << "Nickname"
          << std::endl;
     cout << "-------------------------------------------" << endl;
-  for (list<Contact>::iterator it = contacts.begin(); it != contacts.end(); it++, i++)
+  for (int i = 0; i < size; i++)
   {
     cout << setw(10) << i << "|";
-    truncate(it->first_name);
+    truncate(contacts[i].first_name);
     cout << "|";
-    truncate(it->last_name);
+    truncate(contacts[i].last_name);
     cout << "|";
-    truncate(it->nick_name);
+    truncate(contacts[i].nick_name);
     cout << endl;
   }
-  int user_index;
-  user_index = ask_index();
-  contact_display(user_index);
+  contact_display(ask_index());
 }
 
 void PhoneBook::contact_display(int index)
 {
-    cout << "lol" << endl;
+    for (int i = 0; i < size; i++)
+    {
+      if (i == index)
+        cout << contacts[i].first_name << "\n"
+             << contacts[i].last_name << "\n"
+             << contacts[i].nick_name << "\n"
+      		 << contacts[i].phone << "\n"
+             << contacts[i].darkest_secret
+      	     << endl;
+    }
 }
 
 int PhoneBook::ask_index()
@@ -75,9 +109,11 @@ int PhoneBook::ask_index()
   {
       cout << "Write the Index:" << std::endl;
       cin >> user_index;
-      while (user_index < 0 || user_index >= contacts.size())
+      while (cin.fail() || user_index < 0 || user_index >= size)
       {
           cout << "Write the correct Index!" << std::endl;
+          cin.clear();               // clear the error flags
+		  cin.ignore(10000, '\n'); // skip the buffer
           cin >> user_index;
       }
   }
@@ -86,7 +122,6 @@ int PhoneBook::ask_index()
 
 void  PhoneBook::ft_exit()
 {
-  cout << "Exiting..." << endl;
   exit(0);
 }
 

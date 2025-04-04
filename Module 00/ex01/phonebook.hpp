@@ -1,31 +1,47 @@
 #pragma once
-#include <string>
 #include <iostream>
 #include <list>
 #include <iomanip>
+#include <array>
+#include <string>
 
 using namespace std;
 
 class Contact
 {
     public:
-        Contact(int   contacts_size);
-        string    first_name;
-        string    last_name;
-        string    nick_name;
-        string    phone;
-        string    darkest_secret;
+        char      first_name[100];
+        char      last_name[100];
+        char      nick_name[100];
+        char      phone[100];
+        char      darkest_secret[100];
         int       index;
+    Contact()
+    {
+        first_name[0] = '\0';
+        last_name[0] = '\0';
+        nick_name[0] = '\0';
+        phone[0] = '\0';
+        darkest_secret[0] = '\0';
+        index = -1;
+    }
 };
 
 class PhoneBook
 {
     private:
-        list<Contact>   contacts;
-        void            truncate(string);
-        int             ask_index();
-        void            contact_display(int index);
+        array<Contact, 10>         contacts;
+        void                       truncate(string);
+        int                        ask_index();
+        void                       contact_display(int index);
+        int                        size;
+        int                        oldest_index;
     public:
+        PhoneBook()
+        {
+          size = 0;
+          oldest_index = 0;
+        }
         void            add();
         void            search();
         void            ft_exit();
