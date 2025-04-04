@@ -62,7 +62,7 @@ void PhoneBook::truncate(char *cur_str)
     return;
   }
   char new_str[11];
-  strlcpy(new_str, cur_str, 10);
+  strncpy(new_str, cur_str, 9);
   new_str[9] = '.';
   new_str[10] = '\0';
   cout << setw(10) << new_str;
