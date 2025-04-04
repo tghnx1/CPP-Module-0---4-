@@ -2,7 +2,7 @@
 
 //g++ -Wall -Wextra -Werror -std=c++98 megaphone.cpp
 
-int validate_phone(char *phone)
+int Contact::validate_phone(char *phone)
 {
   if (phone[0] != '+' && !(phone[0] > '0' && phone[0] < '9'))
     return 0;
@@ -26,7 +26,7 @@ void  PhoneBook::add()
   cin >> contact.nick_name;
   cout << "Write the number:" << std::endl;
   cin >> contact.phone;
-  while (!validate_phone(contact.phone))
+  while (!contact.validate_phone(contact.phone))
   {
           cout << "Only '+' and numbers allowed!!!!!" << std::endl;
           cin.clear();               // clear the error flags
@@ -54,15 +54,17 @@ void  PhoneBook::add()
   cout << "Write the command (ADD/SEARCH/EXIT):" << endl;
 }
 
-void PhoneBook::truncate(string cur_str)
+void PhoneBook::truncate(char *cur_str)
 {
-  if (cur_str.size() < 11)
+  if (strlen(cur_str) < 11)
   {
     cout << setw(10) << cur_str;
     return;
   }
-  string new_str = cur_str;
-  new_str = new_str.substr(0, 9) + '.';
+  char new_str[11];
+  strlcpy(new_str, cur_str, 10);
+  new_str[9] = '.';
+  new_str[10] = '\0';
   cout << setw(10) << new_str;
 }
 

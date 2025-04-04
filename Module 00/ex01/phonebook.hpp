@@ -4,6 +4,8 @@
 #include <iomanip>
 #include <array>
 #include <string>
+#include <stdlib.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -16,6 +18,7 @@ class Contact
         char      phone[100];
         char      darkest_secret[100];
         int       index;
+        int       validate_phone(char *);
     Contact()
     {
         first_name[0] = '\0';
@@ -31,9 +34,9 @@ class PhoneBook
 {
     private:
         array<Contact, 10>         contacts;
-        void                       truncate(string);
+        void                       truncate(char *);
         int                        ask_index();
-        void                       contact_display(int index);
+        void                       contact_display(int);
         int                        size;
         int                        oldest_index;
     public:
