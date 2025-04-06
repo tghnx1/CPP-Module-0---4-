@@ -2,6 +2,7 @@ NAME    = Zombie
 
 SRC     = main.cpp \
 		  Weapon.cpp \
+		  HumanA.cpp
 
 OBJ     = $(SRC:.cpp=.o)
 CXX     = g++

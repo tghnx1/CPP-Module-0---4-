@@ -1,4 +1,4 @@
-#include "HumanA.hpp"
+#include "Weapon.hpp"
 
 std::string& Weapon::getType()
 {

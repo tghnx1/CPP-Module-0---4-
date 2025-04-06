@@ -1,13 +1,14 @@
+#pragma once
+
 #include <string>
 #include <iostream>
-#include "HumanA.hpp"
 
 class Weapon
 {
   public:
     Weapon(std::string type);
     std::string  &getType();
+    void    setType(std::string);
   private:
     std::string type;
-    void    setType(std::string);
 };
