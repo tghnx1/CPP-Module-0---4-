@@ -2,14 +2,12 @@
 #include <iostream>
 #include "HumanA.hpp"
 
-using namespace std;
-
 class Weapon
 {
   public:
-    Weapon(string type);
-    string  &getType();
+    Weapon(std::string type);
+    std::string  &getType();
   private:
-    string type;
-    void    setType(string);
+    std::string type;
+    void    setType(std::string);
 };

@@ -4,8 +4,8 @@
 int main()
 {
     Weapon club("red stick");
-    string &type = club.getType();
-    cout << "Type: " << type << endl;
+    std::string &type = club.getType();
+    std::cout << "Type: " << type << std::endl;
     HumanA bob("Bob", club);
 
     /*{
