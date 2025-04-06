@@ -4,6 +4,7 @@ HumanA::HumanA(string name, Weapon weapon)
 {
   this->name = name;
   this->weapon = weapon;
+
 }
 
 void  HumanA::attack()
