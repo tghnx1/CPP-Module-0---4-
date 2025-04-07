@@ -1,9 +1,6 @@
-NAME    = Game
+NAME    = FindString
 
 SRC     = main.cpp \
-		  Weapon.cpp \
-		  HumanA.cpp \
-		  HumanB.cpp
 
 OBJ     = $(SRC:.cpp=.o)
 CXX     = g++
