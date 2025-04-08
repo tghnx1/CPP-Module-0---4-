@@ -23,5 +23,8 @@ void Harl::error( void )
 int main(void)
 {
   Harl myHarl;
+  myHarl.complain("DEBUG");
+  myHarl.complain("INFO");
+  myHarl.complain("WARNING");
   myHarl.complain("ERROR");
 }

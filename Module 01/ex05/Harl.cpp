@@ -1,18 +1,20 @@
 #include "Harl.hpp"
 
-void Harl::complain(string level)
+void Harl::complain(const string &level)
 {
   string commands[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
   void (Harl::*functions[])() =
   {
-    Harl::debug(),
-    Harl::info(),
-    Harl::warning(),
-    Harl::error()
-  }
+    &Harl::debug,
+    &Harl::info,
+    &Harl::warning,
+    &Harl::error
+  };
+
   for (int i = 0; i < 4; i++)
   {
     if (level == commands[i])
-      this->*
+      (this->*functions[i])();
   }
 }

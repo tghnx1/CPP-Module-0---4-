@@ -7,7 +7,7 @@ using namespace std;
 class Harl
 {
   public:
-    void complain(string level);
+    void complain(const string &level);
   private:
     void debug( void );
     void info( void );
