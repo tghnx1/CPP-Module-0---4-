@@ -1,18 +1,7 @@
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 //g++ -Wall -Wextra -Werror -std=c++98 megaphone.cpp
-
-int Contact::validate_phone(char *phone)
-{
-  if (phone[0] != '+' && !(phone[0] >= '0' && phone[0] <= '9'))
-    return 0;
-  for (int i = 1; phone[i] != '\0'; i++)
-  {
-    if ((phone[i] < '0' || phone[i] > '9'))
-      return 0;
-  }
-  return 1;
-}
 
 void  PhoneBook::add()
 {
@@ -36,10 +25,11 @@ void  PhoneBook::add()
 
   cout << "Write the darkest secret:" << std::endl;
   cin.ignore(10000, '\n'); // skip the buffer
-  cin.getline(contact.darkest_secret, 100);
+  //cin.getline(contact.darkest_secret, 100);
+  getline(cin, contact.darkest_secret);
   if (size == 8)
   {
-      contacts[oldest_index] = contact;
+      this->contacts[oldest_index] = contact;
       if (oldest_index == 7)
         oldest_index = 0;
       else
@@ -47,29 +37,31 @@ void  PhoneBook::add()
   }
   else
   {
-      contacts[size] = contact;
+      this->contacts[size] = contact;
       size++;
   }
   cout << "Contact added!" << std::endl;
   cout << "Write the command (ADD/SEARCH/EXIT):" << endl;
 }
 
-void PhoneBook::truncate(char *cur_str)
+void PhoneBook::truncate(string cur_str)
 {
-  if (strlen(cur_str) < 11)
+  if (cur_str.size() < 11)
   {
     cout << setw(10) << cur_str;
     return;
   }
-  char new_str[11];
-  strncpy(new_str, cur_str, 9);
-  new_str[9] = '.';
-  new_str[10] = '\0';
+  string new_str = cur_str.substr(0, 9) + ".";
   cout << setw(10) << new_str;
 }
 
 void PhoneBook::search()
 {
+	if (!this->size)
+	{
+		  cout << "The Phonebook is empty!!!!!!!!!!!!!!!!!!!!!!" << endl;
+		  return;
+	}
     cout << right;
     cout << setw(10) << "Index:"     << "|"
          << setw(10) << "First name" << "|"
@@ -107,6 +99,7 @@ void PhoneBook::contact_display(int index)
 int PhoneBook::ask_index()
 {
   int user_index = -1;
+
   while (user_index == -1)
   {
       cout << "Write the Index:" << std::endl;
@@ -128,34 +121,3 @@ PhoneBook::PhoneBook()
     oldest_index = 0;
 }
 
-Contact::Contact()
-  {
-    first_name[0] = '\0';
-    last_name[0] = '\0';
-    nick_name[0] = '\0';
-    phone[0] = '\0';
-    darkest_secret[0] = '\0';
-    index = -1;
-  }
-
-
-int main ()
-{
-  PhoneBook book;
-  char command[7];
-  int ignore = 0;
-  while(1)
-  {
-    if (!ignore)
-      cout << "Write the command (ADD/SEARCH/EXIT):" << endl;
-    cin >> command;
-    if (!strcmp(command, "EXIT"))
-      exit(0);
-    if (!strcmp(command, "SEARCH"))
-        book.search();
-    if (!strcmp(command, "ADD"))
-        book.add();
-      ignore = 1;
-  }
-  return (0);
-}

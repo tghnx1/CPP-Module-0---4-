@@ -1,9 +1,9 @@
-NAME    = Zombie
+NAME    = phonebook
 
-SRC     = main.cpp \
-			RandomChump.cpp \
-          NewZombie.cpp \
-          Zombie.cpp
+SRC     =	main.cpp \
+			PhoneBook.cpp \
+			Contact.cpp \
+
 
 OBJ     = $(SRC:.cpp=.o)
 CXX     = g++

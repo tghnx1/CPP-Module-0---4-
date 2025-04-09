@@ -1,9 +1,6 @@
-NAME    = Zombie
+NAME    = megaphone
 
-SRC     = main.cpp \
-			RandomChump.cpp \
-          NewZombie.cpp \
-          Zombie.cpp
+SRC     = megaphone.cpp \
 
 OBJ     = $(SRC:.cpp=.o)
 CXX     = g++

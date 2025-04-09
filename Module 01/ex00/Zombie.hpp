@@ -11,8 +11,7 @@ class Zombie
     public:
         Zombie(string name_zombie);
         void    announce(void);
-        ~Zombie();
 };
 
 Zombie* newZombie(string name);
-void randomChump(string name);
+void    RandomChump(string name);
