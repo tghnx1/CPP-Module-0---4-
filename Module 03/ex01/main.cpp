@@ -3,8 +3,8 @@
 
 int main(void)
 {
-	string hero_name = "John Snow";
-	string enemy_name = "Lara Croft";
+	std::string hero_name = "John Snow";
+	std::string enemy_name = "Lara Croft";
 	ClapTrap	hero(hero_name);
     ScavTrap	robot;
 

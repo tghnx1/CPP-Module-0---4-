@@ -1,20 +1,27 @@
 #pragma once
 #include <iostream>
-#include <cstring>
 #include <iomanip>
 #include <string>
 
-using namespace std;
+using std::string;
 
 class Contact
 {
     public:
+        int        validate_phone(string);
+        Contact    createContact();
+        string     getContactName();
+        string     getLastName();
+        string     getNumber();
+        string     getNick();
+        string     getSecret();
+        Contact();
+    private:
         string      first_name;
         string      last_name;
         string      nick_name;
         string      phone;
         string      darkest_secret;
         int         index;
-        int         validate_phone(string);
-        Contact();
+
 };

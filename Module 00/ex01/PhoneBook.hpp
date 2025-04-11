@@ -1,11 +1,10 @@
 #pragma once
 #include <iostream>
-#include <cstring>
 #include <iomanip>
 #include <string>
 #include "Contact.hpp"
 
-using namespace std;
+using std::string;
 
 class PhoneBook
 {

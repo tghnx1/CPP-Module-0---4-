@@ -7,26 +7,7 @@ void  PhoneBook::add()
 {
   Contact contact;
 
-  cout << "Write the first name:" << std::endl;
-  cin >> contact.first_name;
-  cout << "Write the last name:" << std::endl;
-  cin >> contact.last_name;
-  cout << "Write the nick name:" << std::endl;
-  cin >> contact.nick_name;
-  cout << "Write the number:" << std::endl;
-  cin >> contact.phone;
-  while (!contact.validate_phone(contact.phone))
-  {
-          cout << "Only '+' and numbers allowed!!!!!" << std::endl;
-          cin.clear();               // clear the error flags
-		  cin.ignore(10000, '\n'); // skip the buffer
-          cin >> contact.phone;
-  }
-
-  cout << "Write the darkest secret:" << std::endl;
-  cin.ignore(10000, '\n'); // skip the buffer
-  //cin.getline(contact.darkest_secret, 100);
-  getline(cin, contact.darkest_secret);
+  contact = contact.createContact();
   if (size == 8)
   {
       this->contacts[oldest_index] = contact;
@@ -72,11 +53,11 @@ void PhoneBook::search()
   for (int i = 0; i < size; i++)
   {
     cout << setw(10) << i << "|";
-    truncate(contacts[i].first_name);
+    truncate(contacts[i].getContactName());
     cout << "|";
-    truncate(contacts[i].last_name);
+    truncate(contacts[i].getLastName());
     cout << "|";
-    truncate(contacts[i].nick_name);
+    truncate(contacts[i].getNick());
     cout << endl;
   }
   contact_display(ask_index());
@@ -87,11 +68,11 @@ void PhoneBook::contact_display(int index)
     for (int i = 0; i < size; i++)
     {
       if (i == index)
-        cout << contacts[i].first_name << "\n"
-             << contacts[i].last_name << "\n"
-             << contacts[i].nick_name << "\n"
-      		 << contacts[i].phone << "\n"
-             << contacts[i].darkest_secret
+        cout << contacts[i].getContactName() << "\n"
+             << contacts[i].getLastName() << "\n"
+             << contacts[i].getNick() << "\n"
+      		 << contacts[i].getNumber() << "\n"
+             << contacts[i].getSecret()
       	     << endl;
     }
 }

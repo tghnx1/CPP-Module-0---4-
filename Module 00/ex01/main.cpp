@@ -1,5 +1,7 @@
 #include "PhoneBook.hpp"
-#include "Contact.hpp"
+
+using std::cout;
+using std::cin;
 
 int main ()
 {
@@ -9,7 +11,7 @@ int main ()
   while(1)
   {
     if (!ignore)
-      cout << "Write the command (ADD/SEARCH/EXIT):" << endl;
+      cout << "Write the command (ADD/SEARCH/EXIT):" << std::endl;
     cin >> command;
     if (command == "EXIT")
       exit(0);

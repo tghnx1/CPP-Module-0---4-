@@ -53,7 +53,7 @@ ClapTrap::ClapTrap(void)
 	this->name = "Lolek";
 }
 
-ClapTrap::ClapTrap(const string &n)
+ClapTrap::ClapTrap(const std::string &n)
 {
 	std::cout << "Basic constructor called" << std::endl;
 	this->name = n;

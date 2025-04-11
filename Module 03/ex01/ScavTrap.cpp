@@ -9,7 +9,7 @@ ScavTrap::ScavTrap(void)
     this->name = "Lolek";
 }
 
-ScavTrap::ScavTrap(const string &n)
+ScavTrap::ScavTrap(const std::string &n)
 {
     std::cout << "Basic constructor of ScavTrap called" << std::endl;
     this->name = n;

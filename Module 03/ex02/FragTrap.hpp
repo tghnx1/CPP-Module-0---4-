@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ScavTrap.hpp"
+#include <iostream>
+#include <strings.h>
 
 using std::string;
 

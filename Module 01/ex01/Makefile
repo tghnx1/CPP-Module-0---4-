@@ -5,7 +5,7 @@ SRC     = main.cpp \
           zombieHorde.cpp \
 
 OBJ     = $(SRC:.cpp=.o)
-CXX     = g++
+CXX     = c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)

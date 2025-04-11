@@ -3,7 +3,7 @@ NAME    = FindString
 SRC     = main.cpp \
 
 OBJ     = $(SRC:.cpp=.o)
-CXX     = g++
+CXX     = c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
