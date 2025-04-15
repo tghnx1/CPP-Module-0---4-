@@ -29,11 +29,11 @@ void PhoneBook::truncate(string cur_str)
 {
   if (cur_str.size() < 11)
   {
-    cout << setw(10) << cur_str;
+    cout << std::setw(10) << cur_str;
     return;
   }
   string new_str = cur_str.substr(0, 9) + ".";
-  cout << setw(10) << new_str;
+  cout << std::setw(10) << new_str;
 }
 
 void PhoneBook::search()
@@ -43,16 +43,16 @@ void PhoneBook::search()
 		  cout << "The Phonebook is empty!!!!!!!!!!!!!!!!!!!!!!" << endl;
 		  return;
 	}
-    cout << right;
-    cout << setw(10) << "Index:"     << "|"
-         << setw(10) << "First name" << "|"
-         << setw(10) << "Lastname"   << "|"
-         << setw(10) << "Nickname"
+    cout << std::right;
+    cout << std::setw(10) << "Index:"     << "|"
+         << std::setw(10) << "First name" << "|"
+         << std::setw(10) << "Lastname"   << "|"
+         << std::setw(10) << "Nickname"
          << std::endl;
     cout << "-------------------------------------------" << endl;
   for (int i = 0; i < size; i++)
   {
-    cout << setw(10) << i << "|";
+    cout << std::setw(10) << i << "|";
     truncate(contacts[i].getContactName());
     cout << "|";
     truncate(contacts[i].getLastName());

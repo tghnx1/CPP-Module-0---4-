@@ -5,6 +5,7 @@
 #include "Contact.hpp"
 
 using std::string;
+using std::endl;
 
 class PhoneBook
 {
