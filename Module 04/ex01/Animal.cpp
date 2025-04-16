@@ -25,11 +25,6 @@ Animal::Animal(const Animal& newone)
     this->type = newone.type;
 }
 
-Animal::~Animal()
-{
-    std::cout << "Animal Destructor called" << std::endl;
-}
-
 Animal &Animal::operator=(const Animal& newone)
 {
     std::cout << "Copy assignment operator called" << std::endl;
@@ -39,3 +34,9 @@ Animal &Animal::operator=(const Animal& newone)
     }
     return (*this);
 }
+
+Animal::~Animal()
+{
+    std::cout << "Animal Destructor called" << std::endl;
+}
+
